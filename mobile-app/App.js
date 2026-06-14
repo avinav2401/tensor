@@ -168,121 +168,122 @@ const App = () => {
   const activeDisease = diseaseDetails[label];
 
   return (
-    <SafeAreaView style={styles.outer}>
+    <View style={styles.outer}>
       <StatusBar barStyle="light-content" backgroundColor="#0b0f19" />
-      
-      {/* Background gradients simulated via styled View overlays */}
-      <View style={styles.glowTop} />
-      
-      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Text style={styles.brandTitle}>🥔 PotatoAI</Text>
-          <Text style={styles.brandSubtitle}>Deep Learning Disease Recognition</Text>
-        </View>
-
-        {/* Image Card Container */}
-        <View style={styles.cardContainer}>
-          {image ? (
-            <View style={styles.imageWrapper}>
-              <Image source={{uri: image}} style={styles.imageStyle} />
-              <TouchableOpacity onPress={clearOutput} style={styles.clearBtn} activeOpacity={0.8}>
-                <Text style={styles.clearBtnText}>✕ Clear Photo</Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <View style={styles.uploadPlaceholder}>
-              <Text style={styles.placeholderIcon}>🌿</Text>
-              <Text style={styles.placeholderText}>Upload or capture a potato plant leaf image</Text>
-              <Text style={styles.placeholderSubText}>Supports JPEG/PNG</Text>
-            </View>
-          )}
-        </View>
-
-        {/* Diagnosis & Analysis Results */}
-        {loading && (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#6366f1" />
-            <Text style={styles.loadingText}>Analyzing cell structures...</Text>
+      <SafeAreaView style={{flex: 1}}>
+        {/* Background gradients simulated via styled View overlays */}
+        <View style={styles.glowTop} />
+        
+        <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+          {/* Header */}
+          <View style={styles.header}>
+            <Text style={styles.brandTitle}>🥔 PotatoAI</Text>
+            <Text style={styles.brandSubtitle}>Deep Learning Disease Recognition</Text>
           </View>
-        )}
 
-        {!loading && label ? (
-          <View style={styles.resultCard}>
-            {label.startsWith('Error') ? (
-              <View style={styles.errorContainer}>
-                <Text style={styles.errorIcon}>⚠️</Text>
-                <Text style={styles.errorText}>{label}</Text>
+          {/* Image Card Container */}
+          <View style={styles.cardContainer}>
+            {image ? (
+              <View style={styles.imageWrapper}>
+                <Image source={{uri: image}} style={styles.imageStyle} />
+                <TouchableOpacity onPress={clearOutput} style={styles.clearBtn} activeOpacity={0.8}>
+                  <Text style={styles.clearBtnText}>✕ Clear Photo</Text>
+                </TouchableOpacity>
               </View>
             ) : (
-              <View style={styles.resultDetails}>
-                <Text style={styles.resultHeader}>DIAGNOSIS REPORT</Text>
-                <Text style={[styles.resultLabel, {color: getSeverityColor(label)}]}>
-                  {label}
-                </Text>
-                
-                {/* Confidence Bar */}
-                {confidence !== null && (
-                  <View style={styles.confidenceSection}>
-                    <View style={styles.confidenceLabelRow}>
-                      <Text style={styles.confidenceTitle}>Confidence Level</Text>
-                      <Text style={[styles.confidenceValue, {color: getSeverityColor(label)}]}>
-                        {confidence.toFixed(1)}%
-                      </Text>
-                    </View>
-                    <View style={styles.progressBarBg}>
-                      <View 
-                        style={[
-                          styles.progressBarFill, 
-                          {width: `${confidence}%`, backgroundColor: getSeverityColor(label)}
-                        ]} 
-                      />
-                    </View>
-                  </View>
-                )}
-
-                {/* Additional Information Card */}
-                {activeDisease && (
-                  <View style={styles.infoCard}>
-                    <View style={styles.infoRow}>
-                      <Text style={styles.infoHeading}>Cause:</Text>
-                      <Text style={styles.infoValue}>{activeDisease.cause}</Text>
-                    </View>
-                    <View style={styles.infoRow}>
-                      <Text style={styles.infoHeading}>Symptoms:</Text>
-                      <Text style={styles.infoValue}>{activeDisease.symptoms}</Text>
-                    </View>
-                    <View style={styles.infoRow}>
-                      <Text style={styles.infoHeading}>Action/Treatment:</Text>
-                      <Text style={styles.infoValue}>{activeDisease.treatment}</Text>
-                    </View>
-                  </View>
-                )}
+              <View style={styles.uploadPlaceholder}>
+                <Text style={styles.placeholderIcon}>🌿</Text>
+                <Text style={styles.placeholderText}>Upload or capture a potato plant leaf image</Text>
+                <Text style={styles.placeholderSubText}>Supports JPEG/PNG</Text>
               </View>
             )}
           </View>
-        ) : null}
 
-        {/* Buttons Section */}
-        <View style={styles.btnRow}>
-          <TouchableOpacity
-            activeOpacity={0.85}
-            onPress={() => manageCamera('Camera')}
-            style={styles.actionButton}>
-            <Text style={styles.btnIcon}>📸</Text>
-            <Text style={styles.btnText}>Use Camera</Text>
-          </TouchableOpacity>
+          {/* Diagnosis & Analysis Results */}
+          {loading && (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color="#6366f1" />
+              <Text style={styles.loadingText}>Analyzing cell structures...</Text>
+            </View>
+          )}
 
-          <TouchableOpacity
-            activeOpacity={0.85}
-            onPress={() => manageCamera('Photo')}
-            style={styles.actionButton}>
-            <Text style={styles.btnIcon}>📁</Text>
-            <Text style={styles.btnText}>From Gallery</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+          {!loading && label ? (
+            <View style={styles.resultCard}>
+              {label.startsWith('Error') ? (
+                <View style={styles.errorContainer}>
+                  <Text style={styles.errorIcon}>⚠️</Text>
+                  <Text style={styles.errorText}>{label}</Text>
+                </View>
+              ) : (
+                <View style={styles.resultDetails}>
+                  <Text style={styles.resultHeader}>DIAGNOSIS REPORT</Text>
+                  <Text style={[styles.resultLabel, {color: getSeverityColor(label)}]}>
+                    {label}
+                  </Text>
+                  
+                  {/* Confidence Bar */}
+                  {confidence !== null && (
+                    <View style={styles.confidenceSection}>
+                      <View style={styles.confidenceLabelRow}>
+                        <Text style={styles.confidenceTitle}>Confidence Level</Text>
+                        <Text style={[styles.confidenceValue, {color: getSeverityColor(label)}]}>
+                          {confidence.toFixed(1)}%
+                        </Text>
+                      </View>
+                      <View style={styles.progressBarBg}>
+                        <View 
+                          style={[
+                            styles.progressBarFill, 
+                            {width: `${confidence}%`, backgroundColor: getSeverityColor(label)}
+                          ]} 
+                        />
+                      </View>
+                    </View>
+                  )}
+
+                  {/* Additional Information Card */}
+                  {activeDisease && (
+                    <View style={styles.infoCard}>
+                      <View style={styles.infoRow}>
+                        <Text style={styles.infoHeading}>Cause:</Text>
+                        <Text style={styles.infoValue}>{activeDisease.cause}</Text>
+                      </View>
+                      <View style={styles.infoRow}>
+                        <Text style={styles.infoHeading}>Symptoms:</Text>
+                        <Text style={styles.infoValue}>{activeDisease.symptoms}</Text>
+                      </View>
+                      <View style={styles.infoRow}>
+                        <Text style={styles.infoHeading}>Action/Treatment:</Text>
+                        <Text style={styles.infoValue}>{activeDisease.treatment}</Text>
+                      </View>
+                    </View>
+                  )}
+                </View>
+              )}
+            </View>
+          ) : null}
+
+          {/* Buttons Section */}
+          <View style={styles.btnRow}>
+            <TouchableOpacity
+              activeOpacity={0.85}
+              onPress={() => manageCamera('Camera')}
+              style={styles.actionButton}>
+              <Text style={styles.btnIcon}>📸</Text>
+              <Text style={styles.btnText}>Use Camera</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              activeOpacity={0.85}
+              onPress={() => manageCamera('Photo')}
+              style={styles.actionButton}>
+              <Text style={styles.btnIcon}>📁</Text>
+              <Text style={styles.btnText}>From Gallery</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 };
 
