@@ -22,8 +22,8 @@ Detect potato plant diseases instantly by uploading a leaf photo. Powered by a *
 | ---------- | ------------------------------- |
 | ML Model   | TensorFlow / Keras (CNN)        |
 | Backend    | FastAPI + Uvicorn               |
-| Frontend   | React 17 + Vanilla CSS          |
-| Deployment | GCP (model) / Local Hosting     |
+| Frontend   | React 17 + Vanilla CSS                    |
+| Deployment | Vercel (Frontend) + Render (Backend)      |
 
 ---
 
@@ -93,16 +93,37 @@ The app opens at `http://localhost:3000`.
 
 ---
 
-## 🌐 Deploy Frontend
+## 🌐 Deploy Frontend (Vercel)
 
-You can deploy the `frontend/` folder to any static hosting service:
+You can easily deploy the frontend to Vercel:
 
-- **Netlify**: Drag and drop the `frontend/build/` folder after running `npm run build`
-- **GitHub Pages**: Use the `gh-pages` npm package
-
-Remember to set the `REACT_APP_API_URL` environment variable to your deployed API URL.
+1. Log into your **Vercel** dashboard and select **New Project**.
+2. Import your GitHub repository.
+3. Configure the build:
+   - **Root Directory**: Set to `frontend/`
+   - **Framework Preset**: Select `Create React App`
+4. Go to **Environment Variables** and add:
+   - **Key**: `REACT_APP_API_URL`
+   - **Value**: `https://<YOUR_RENDER_BACKEND_URL>/predict`
+5. Click **Deploy**.
 
 ---
+
+## 🚀 Deploy Backend (Render)
+
+Deploy your FastAPI backend to Render as a Web Service:
+
+1. Log into **Render.com** and select **New** > **Web Service**.
+2. Select your repository.
+3. Configure the settings:
+   - **Language**: `Python 3`
+   - **Root Directory**: `api`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+4. Under the **Environment** tab, add the following environment variable:
+   - **Key**: `PYTHON_VERSION`
+   - **Value**: `3.10`
+5. Select the **Free** tier and click **Create Web Service**.
 
 ## ☁️ Deploy to Google Cloud Platform (Backend)
 
