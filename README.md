@@ -1,6 +1,6 @@
 # 🥔 PotatoAI — AI-Powered Potato Disease Detection
 
-Detect potato plant diseases instantly by uploading a leaf photo. Powered by a **TensorFlow CNN** model with **99%+ accuracy**, a **FastAPI** backend, and a modern **React** frontend.
+Deployed a TensorFlow CNN inference pipeline through FastAPI, enabling sub-second disease classification for potato leaf images across web and mobile platforms.
 
 ---
 
@@ -236,6 +236,16 @@ Due to Apple security restrictions, iOS apps must be compiled locally using Xcod
    ```bash
    npm run ios
    ```
+
+---
+
+## 📝 Resume Bullet Points
+
+If you want to showcase this project on your resume, here is a highly professional, software-engineering-focused description:
+
+> **PotatoAI — AI-Powered Potato Disease Detection | React, React Native, FastAPI, TensorFlow, Cloud**
+> - Developed an end-to-end plant disease detection platform using TensorFlow CNNs, FastAPI, and React, enabling sub-second classification of Healthy, Early Blight, and Late Blight potato leaf images through a responsive drag-and-drop interface.
+> - Engineered a scalable inference pipeline with TensorFlow Lite, React Native, Render, Vercel, and Google Cloud Functions, integrating confidence-based diagnosis visualization and cross-platform deployment across web and mobile devices.
 
 ---
 
