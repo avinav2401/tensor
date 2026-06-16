@@ -167,8 +167,8 @@ There are two ways to get/run the Android app:
 
 #### Option A: Quick Install via Pre-built APK (No Setup Needed)
 If you just want to install and test the app on a physical Android device:
-1. Locate the prebuilt debug APK file on your computer at:
-   `c:\Users\avina\OneDrive\Desktop\tensor\mobile-app\android\app\build\outputs\apk\debug\app-debug.apk`
+1. Locate the prebuilt debug APK file in your local repository clone:
+   `mobile-app/android/app/build/outputs/apk/debug/app-debug.apk`
 2. Copy this `.apk` file to your Android device (via USB, email, Google Drive, etc.).
 3. Open the `.apk` file on your device and install it (allow installation from unknown sources if prompted).
 
