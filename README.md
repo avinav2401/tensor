@@ -159,13 +159,63 @@ curl -X POST http://localhost:8000/predict \
 
 ## 📱 Mobile App (React Native)
 
-The repository also includes a React Native mobile application for mobile testing. To run the app on Android or iOS:
+The repository includes a React Native application inside `mobile-app/` for running PotatoAI on mobile devices.
 
-1. Navigate to the `mobile-app` directory:
+### 🤖 Android Setup & Install
+
+There are two ways to get/run the Android app:
+
+#### Option A: Quick Install via Pre-built APK (No Setup Needed)
+If you just want to install and test the app on a physical Android device:
+1. Locate the prebuilt debug APK file on your computer at:
+   `c:\Users\avina\OneDrive\Desktop\tensor\mobile-app\android\app\build\outputs\apk\debug\app-debug.apk`
+2. Copy this `.apk` file to your Android device (via USB, email, Google Drive, etc.).
+3. Open the `.apk` file on your device and install it (allow installation from unknown sources if prompted).
+
+#### Option B: Build & Run from Source (Developer Setup)
+1. Ensure you have **Android Studio** and **Android SDK** configured.
+2. Navigate to the `mobile-app/` directory and install dependencies:
    ```bash
    cd mobile-app
+   npm install
    ```
-2. Follow the detailed steps in the [Mobile App README](file:///c:/Users/avina/OneDrive/Desktop/tensor/mobile-app/README.md) to set up dependencies, configure your local API URL, and start the app on your emulator or device.
+3. Create a `.env` file in `mobile-app/` and set your backend API URL:
+   ```env
+   URL=http://<YOUR_COMPUTER_IP>:8000/predict
+   ```
+   *Note: If using the Android Emulator, use `http://10.0.2.2:8000/predict`.*
+4. Start Metro bundler:
+   ```bash
+   npm start
+   ```
+5. Run the app:
+   ```bash
+   npm run android
+   ```
+
+---
+
+### 🍏 iOS Setup (macOS & Xcode Required)
+
+Due to Apple security restrictions, iOS apps must be compiled locally using Xcode on macOS:
+1. Install **CocoaPods** on your macOS machine.
+2. Navigate to `mobile-app/` and install npm dependencies:
+   ```bash
+   npm install
+   ```
+3. Install iOS CocoaPods dependencies:
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+4. Configure the API URL in `.env` (use your computer's local network IP address).
+5. Open the workspace in Xcode:
+   ```bash
+   open ios/mlDemo.xcworkspace
+   ```
+6. Build and run the app from Xcode on a connected iOS device or the iOS Simulator, or run:
+   ```bash
+   npm run ios
+   ```
 
 ---
 
