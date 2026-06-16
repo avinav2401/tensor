@@ -42,15 +42,10 @@ def resize_and_save(image_path, base_res_path):
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    import glob
-    # Find the newest generated icon
-    brain_dir = r"C:\Users\avina\.gemini\antigravity-ide\brain\4335a11a-a969-4052-80e7-da93364fb608"
-    icon_files = glob.glob(os.path.join(brain_dir, "potato_app_icon_*.png"))
-    if not icon_files:
-        print("Could not find the generated icon.")
+    source_icon = os.path.join("frontend", "public", "logo.png")
+    if not os.path.exists(source_icon):
+        print(f"Could not find the source icon at {source_icon}")
         sys.exit(1)
         
-    latest_icon = max(icon_files, key=os.path.getctime)
-    
     res_path = os.path.join("mobile-app", "android", "app", "src", "main", "res")
-    resize_and_save(latest_icon, res_path)
+    resize_and_save(source_icon, res_path)
