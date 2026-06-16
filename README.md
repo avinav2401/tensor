@@ -23,7 +23,7 @@ Detect potato plant diseases instantly by uploading a leaf photo. Powered by a *
 | ML Model   | TensorFlow / Keras (CNN)        |
 | Backend    | FastAPI + Uvicorn               |
 | Frontend   | React 17 + Vanilla CSS          |
-| Deployment | Vercel (frontend) + GCP (model) |
+| Deployment | GCP (model) / Local Hosting     |
 
 ---
 
@@ -97,7 +97,6 @@ The app opens at `http://localhost:3000`.
 
 You can deploy the `frontend/` folder to any static hosting service:
 
-- **Vercel**: Connect your GitHub repo and set the root to `frontend/`
 - **Netlify**: Drag and drop the `frontend/build/` folder after running `npm run build`
 - **GitHub Pages**: Use the `gh-pages` npm package
 
