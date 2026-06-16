@@ -5,6 +5,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  Alert,
   Platform,
   Dimensions,
   useColorScheme,
@@ -16,7 +17,7 @@ import {
 import axios from 'axios';
 import Config from 'react-native-config';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import PermissionsService, {isIOS} from './Permissions';
+import PermissionsService from './Permissions';
 
 export const {height, width} = Dimensions.get('window');
 
@@ -76,12 +77,22 @@ const App = () => {
       if (type === 'Camera') {
         const hasPermission = await PermissionsService.hasCameraPermission();
         if (!hasPermission) {
+          Alert.alert(
+            'Permission Denied',
+            'Camera access is required to take photos. Please enable it in your device settings.',
+            [{text: 'OK'}],
+          );
           return;
         }
         openCamera();
       } else {
         const hasPermission = await PermissionsService.hasPhotoPermission();
         if (!hasPermission) {
+          Alert.alert(
+            'Permission Denied',
+            'Photo library access is required to select images. Please enable it in your device settings.',
+            [{text: 'OK'}],
+          );
           return;
         }
         openLibrary();
@@ -144,6 +155,7 @@ const App = () => {
         setConfidence(res.data.confidence * 100);
       } else {
         setLabel('Unable to analyze image.');
+        setConfidence(null); // clear any stale confidence
       }
     } catch (error) {
       console.log('Backend request error:', error);
@@ -152,6 +164,7 @@ const App = () => {
         error?.message ||
         'Server unreachable. Check Wi-Fi & backend.';
       setLabel('Error: ' + msg);
+      setConfidence(null); // clear stale confidence on error
     } finally {
       setLoading(false);
     }
@@ -234,7 +247,11 @@ const App = () => {
                         <View 
                           style={[
                             styles.progressBarFill, 
-                            {width: `${confidence}%`, backgroundColor: getSeverityColor(label)}
+                            {
+                              // Use numeric width for iOS compatibility (% strings not supported)
+                              width: (width - 40 - 40) * (confidence / 100),
+                              backgroundColor: getSeverityColor(label),
+                            }
                           ]} 
                         />
                       </View>
