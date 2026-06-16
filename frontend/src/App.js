@@ -37,6 +37,7 @@ export default function App() {
   const [dragOver, setDragOver] = useState(false);
   const [barWidth, setBarWidth] = useState(0);
   const [navScrolled, setNavScrolled] = useState(false);
+  const [error, setError] = useState(null);
   const fileInputRef = useRef(null);
   const uploadRef = useRef(null);
 
@@ -60,11 +61,15 @@ export default function App() {
     if (!preview || !selectedFile) return;
     setIsLoading(true);
     setData(null);
+    setError(null);
     const formData = new FormData();
     formData.append("file", selectedFile);
     axios.post(process.env.REACT_APP_API_URL || "http://localhost:8000/predict", formData)
       .then(res => { if (res.status === 200) setData(res.data); })
-      .catch(err => { console.error("Prediction failed:", err); })
+      .catch(err => {
+        console.error("Prediction failed:", err);
+        setError("Cannot reach the API server. Make sure the backend is running on port 8000.");
+      })
       .finally(() => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preview]);
@@ -82,6 +87,7 @@ export default function App() {
     if (!file || !file.type.startsWith("image/")) return;
     setSelectedFile(file);
     setData(null);
+    setError(null);
   };
 
   const handleDrop = (e) => {
@@ -96,6 +102,7 @@ export default function App() {
     setData(null);
     setIsLoading(false);
     setBarWidth(0);
+    setError(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -206,6 +213,16 @@ export default function App() {
                 </div>
                 <div className="loading-title">Analyzing Leaf...</div>
                 <p className="loading-sub">Running AI inference<span className="loading-dots"></span></p>
+              </div>
+            )}
+
+            {/* API Error */}
+            {error && !isLoading && (
+              <div className="upload-card" style={{borderColor: 'rgba(239,68,68,0.4)', background: 'rgba(239,68,68,0.04)', cursor: 'default'}}>
+                <div style={{fontSize: '2.5rem', marginBottom: '1rem'}}>⚠️</div>
+                <div className="upload-title" style={{color: '#f87171'}}>API Connection Failed</div>
+                <p className="upload-sub">{error}</p>
+                <button className="upload-btn" style={{background: 'linear-gradient(135deg,#ef4444,#b91c1c)'}} onClick={clearAll}>↩ Try Again</button>
               </div>
             )}
 

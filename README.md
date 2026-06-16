@@ -43,8 +43,8 @@ Detect potato plant diseases instantly by uploading a leaf photo. Powered by a *
 ├── saved_models/           # TensorFlow SavedModel format
 ├── tf-lite-models/         # TFLite for mobile
 ├── mobile-app/             # React Native mobile app
+├── gcp/                    # Google Cloud Function deployment
 ├── potatoes.h5             # Trained Keras model
-├── vercel.json             # Vercel deployment config
 └── README.md
 ```
 
@@ -93,15 +93,15 @@ The app opens at `http://localhost:3000`.
 
 ---
 
-## 🌐 Deploy to Vercel (Frontend)
+## 🌐 Deploy Frontend
 
-The project includes a `vercel.json` for one-click frontend deployment:
+You can deploy the `frontend/` folder to any static hosting service:
 
-```bash
-npm install -g vercel
-cd frontend
-vercel
-```
+- **Vercel**: Connect your GitHub repo and set the root to `frontend/`
+- **Netlify**: Drag and drop the `frontend/build/` folder after running `npm run build`
+- **GitHub Pages**: Use the `gh-pages` npm package
+
+Remember to set the `REACT_APP_API_URL` environment variable to your deployed API URL.
 
 ---
 
