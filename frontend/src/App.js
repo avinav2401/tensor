@@ -163,8 +163,8 @@ export default function App() {
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
-              <div className="stat-value">99%+</div>
-              <div className="stat-label">Accuracy</div>
+              <div className="stat-value">3</div>
+              <div className="stat-label">Platforms</div>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
