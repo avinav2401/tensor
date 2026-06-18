@@ -44,7 +44,9 @@ Deployed a TensorFlow CNN inference pipeline through FastAPI, enabling sub-secon
 ├── tf-lite-models/         # TFLite for mobile
 ├── mobile-app/             # React Native mobile app
 ├── gcp/                    # Google Cloud Function deployment
+├── test_images_from_internet/ # Test images for model inference
 ├── potatoes.h5             # Trained Keras model
+├── set_icon.py             # Script to generate Android app icons
 └── README.md
 ```
 
