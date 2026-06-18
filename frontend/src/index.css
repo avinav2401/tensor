@@ -385,6 +385,15 @@ body {
   margin-top: 4px;
 }
 
+.stat-sub {
+  font-size: 0.65rem;
+  color: rgba(241,245,249,0.2);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-top: 3px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
 .stat-divider {
   width: 1px;
   height: 32px;

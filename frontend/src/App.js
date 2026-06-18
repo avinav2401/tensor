@@ -159,17 +159,20 @@ export default function App() {
           <div className="stats-row">
             <div className="stat-item">
               <div className="stat-value">3</div>
-              <div className="stat-label">Disease Classes</div>
+              <div className="stat-label">Leaf Conditions</div>
+              <div className="stat-sub">Healthy · Early · Late Blight</div>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
               <div className="stat-value">3</div>
-              <div className="stat-label">Platforms</div>
+              <div className="stat-label">Native Platforms</div>
+              <div className="stat-sub">Web · Android · iOS</div>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
               <div className="stat-value">&lt;1s</div>
-              <div className="stat-label">Analysis Time</div>
+              <div className="stat-label">Live Inference</div>
+              <div className="stat-sub">Real-time CNN pipeline</div>
             </div>
           </div>
 
