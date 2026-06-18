@@ -199,11 +199,11 @@ If you just want to install and test the app on a physical Android device:
    cd mobile-app
    npm install
    ```
-3. Create a `.env` file in `mobile-app/` and set your backend API URL:
+3. Create a `.env` file in `mobile-app/` and set your backend API URL (use your live Render URL or a local IP):
    ```env
-   URL=http://<YOUR_COMPUTER_IP>:8000/predict
+   URL=https://<YOUR_RENDER_BACKEND_URL>/predict
    ```
-   *Note: If using the Android Emulator, use `http://10.0.2.2:8000/predict`.*
+   *Note: For local development, use `http://<YOUR_COMPUTER_IP>:8000/predict` (or `http://10.0.2.2:8000/predict` for Android Emulator).*
 4. Start Metro bundler:
    ```bash
    npm start
@@ -227,7 +227,7 @@ Due to Apple security restrictions, iOS apps must be compiled locally using Xcod
    ```bash
    cd ios && pod install && cd ..
    ```
-4. Configure the API URL in `.env` (use your computer's local network IP address).
+4. Configure the API URL in `.env` (use `https://<YOUR_RENDER_BACKEND_URL>/predict` or your local network IP address).
 5. Open the workspace in Xcode:
    ```bash
    open ios/mlDemo.xcworkspace
