@@ -1088,6 +1088,18 @@ body {
 }
 .disease-card.late-card::after { background: var(--red-500); }
 
+.disease-card.powdery-card {
+  background: rgba(249,115,22,0.04);
+  border-color: rgba(249,115,22,0.15);
+}
+.disease-card.powdery-card::after { background: var(--orange-500); }
+
+.disease-card.rust-card {
+  background: rgba(239,68,68,0.04);
+  border-color: rgba(239,68,68,0.15);
+}
+.disease-card.rust-card::after { background: var(--red-500); }
+
 .disease-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 24px 60px rgba(0,0,0,0.3);
