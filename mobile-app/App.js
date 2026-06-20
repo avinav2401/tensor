@@ -243,7 +243,13 @@ const App = () => {
                 <View style={styles.resultDetails}>
                   <Text style={styles.resultHeader}>DIAGNOSIS REPORT</Text>
                   <Text style={[styles.resultLabel, {color: getSeverityColor(label)}]}>
-                    {label}
+                    {{
+                      'Potato_Early_Blight': 'Early Blight',
+                      'Potato_Late_Blight': 'Late Blight',
+                      'Powdery': 'Powdery Mildew',
+                      'Rust': 'Cedar Apple Rust',
+                      'Healthy': 'Healthy Plant',
+                    }[label] || label.replace(/_/g, ' ')}
                   </Text>
                   
                   {/* Confidence Bar */}
