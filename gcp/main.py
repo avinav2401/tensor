@@ -8,7 +8,7 @@ interpreter = None
 input_index = None
 output_index = None
 
-class_names = ["Early Blight", "Late Blight", "Healthy"]
+class_names = ["Healthy", "Potato_Early_Blight", "Potato_Late_Blight", "Powdery", "Rust"]
 
 BUCKET_NAME = "YOUR_GCS_BUCKET_NAME"  # TODO: replace with your actual GCP bucket name
 
@@ -29,10 +29,10 @@ def predict(request):
     if model is None:
         download_blob(
             BUCKET_NAME,
-            "models/potatoes.h5",
-            "/tmp/potatoes.h5",
+            "models/universal_model.keras",
+            "/tmp/universal_model.keras",
         )
-        model = tf.keras.models.load_model("/tmp/potatoes.h5")
+        model = tf.keras.models.load_model("/tmp/universal_model.keras", compile=False)
 
     image = request.files["file"]
 
@@ -40,7 +40,7 @@ def predict(request):
         Image.open(image).convert("RGB").resize((256, 256)) # image resizing
     )
 
-    image = image/255 # normalize the image in 0 to 1 range
+    # image normalization is handled by the model's Rescaling layer
 
     img_array = tf.expand_dims(image, 0)
     predictions = model.predict(img_array)

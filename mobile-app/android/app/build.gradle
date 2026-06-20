@@ -136,7 +136,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mldemo"
+        applicationId "com.universalplantai"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
