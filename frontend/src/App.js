@@ -177,7 +177,7 @@ export default function App() {
             <div className="stat-item">
               <div className="stat-value">5</div>
               <div className="stat-label">Leaf Conditions</div>
-              <div className="stat-sub">Healthy · Blight · Powdery · Rust</div>
+              <div className="stat-sub">Healthy · Early Blight · Late Blight · Powdery · Rust</div>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
