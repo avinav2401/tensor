@@ -17,6 +17,8 @@ app.add_middleware(
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
 MODEL_PATH = Path(__file__).parent.parent / "saved_models" / "universal_model.keras"
 MODEL = tf.keras.models.load_model(str(MODEL_PATH), compile=False)
 
