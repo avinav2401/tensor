@@ -1,4 +1,4 @@
-# 📱 PotatoAI Mobile App (React Native)
+# 📱 UniversalPlantAI Mobile App (React Native)
 
 This directory contains the React Native application for potato disease prediction. It allows users to take a photo of a potato leaf using their camera or select one from their gallery, sending it to the FastAPI backend server to get predictions.
 

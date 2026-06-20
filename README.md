@@ -1,13 +1,13 @@
-# 🥔 PotatoAI — AI-Powered Potato Disease Detection
+# 🍏 UniversalPlantAI — AI-Powered Potato & Apple Disease Detection
 
-Deployed a TensorFlow CNN inference pipeline through FastAPI, enabling sub-second disease classification for potato leaf images across web and mobile platforms.
+Deployed a TensorFlow CNN inference pipeline through FastAPI, enabling sub-second disease classification for potato and apple leaf images across web and mobile platforms.
 
 ---
 
 ## ✨ Features
 
-- **Instant Classification** — Upload a leaf image and get results in under 1 second
-- **3 Disease Classes** — Healthy, Early Blight, Late Blight
+- **Instant Classification** — Upload a potato or apple leaf image and get results in under 1 second
+- **5 Disease Classes** — Healthy, Early Blight, Late Blight, Powdery Mildew, Rust
 - **Confidence Score** — Animated confidence bar with severity-based color coding
 - **Drag & Drop** — Modern drag-and-drop upload with file browser fallback
 - **Treatment Info** — Actionable diagnosis descriptions for each disease
@@ -181,7 +181,7 @@ curl -X POST http://localhost:8000/predict \
 
 ## 📱 Mobile App (React Native)
 
-The repository includes a React Native application inside `mobile-app/` for running PotatoAI on mobile devices.
+The repository includes a React Native application inside `mobile-app/` for running UniversalPlantAI on mobile devices.
 
 ### 🤖 Android Setup & Install
 

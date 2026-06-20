@@ -19,10 +19,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL_PATH = Path(__file__).parent.parent / "potatoes.h5"
+MODEL_PATH = Path(__file__).parent.parent / "saved_models" / "universal_model.h5"
 MODEL = tf.keras.models.load_model(str(MODEL_PATH), compile=False)
 
-CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
+CLASS_NAMES = ["Healthy", "Potato_Early_Blight", "Potato_Late_Blight", "Powdery", "Rust"]
 
 @app.get("/ping")
 async def ping():
@@ -40,7 +40,7 @@ async def predict(
     file: UploadFile = File(...)
 ):
     image = read_file_as_image(await file.read())
-    img_batch = np.expand_dims(image, 0) / 255.0
+    img_batch = np.expand_dims(image, 0)
     
     predictions = MODEL.predict(img_batch)
 

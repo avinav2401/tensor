@@ -4,22 +4,39 @@ import "./index.css";
 
 const DISEASE_INFO = {
   "Healthy": {
+    displayName: "Healthy",
     emoji: "🌿",
     color: "healthy",
     infoClass: "",
-    description: "Your potato plant is in excellent health! No signs of disease detected. Continue your current care routine — proper watering, sunlight, and nutrient management.",
+    description: "Your plant is in excellent health! No signs of disease detected. Continue your current care routine — proper watering, sunlight, and nutrient management.",
   },
-  "Early Blight": {
+  "Potato_Early_Blight": {
+    displayName: "Early Blight",
     emoji: "🟠",
     color: "disease",
     infoClass: "warn",
     description: "Early Blight (Alternaria solani) causes dark brown spots with concentric rings on lower leaves. Treat with copper-based fungicide and remove affected foliage promptly.",
   },
-  "Late Blight": {
+  "Potato_Late_Blight": {
+    displayName: "Late Blight",
     emoji: "🔴",
     color: "late-blight",
     infoClass: "danger",
     description: "Late Blight (Phytophthora infestans) is a severe disease causing water-soaked grayish-green lesions. Immediate treatment with systemic fungicide is critical to prevent crop loss.",
+  },
+  "Powdery": {
+    displayName: "Powdery Mildew",
+    emoji: "🌫️",
+    color: "powdery",
+    infoClass: "warn",
+    description: "Powdery Mildew appears as white, powdery fungal spots on leaves. Ensure good air circulation, avoid overhead watering, and apply sulfur-based fungicides if needed.",
+  },
+  "Rust": {
+    displayName: "Rust",
+    emoji: "🍂",
+    color: "disease",
+    infoClass: "danger",
+    description: "Rust fungus forms orange or reddish-brown pustules on leaves. Remove infected parts immediately and treat with appropriate fungicides to stop spreading.",
   },
 };
 
@@ -120,7 +137,7 @@ export default function App() {
       <nav className={`navbar ${navScrolled ? "scrolled" : ""}`}>
         <div className="navbar-brand" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <div className="navbar-icon">🥔</div>
-          <span className="navbar-title">Potato<span>AI</span></span>
+          <span className="navbar-title">UniversalPlant<span>AI</span></span>
         </div>
 
         <div className="navbar-links">
@@ -148,19 +165,19 @@ export default function App() {
           </div>
 
           <h1 className="hero-headline">
-            Detect Potato Diseases<br />
+            Detect Potato & Apple Diseases<br />
             <span className="highlight">Instantly with AI</span>
           </h1>
 
           <p className="hero-sub">
-            Upload a photo of your potato plant leaf and receive instant disease classification powered by a convolutional neural network trained on thousands of samples.
+            Upload a photo of your potato or apple leaf and receive instant disease classification powered by a convolutional neural network trained on thousands of samples.
           </p>
 
           <div className="stats-row">
             <div className="stat-item">
-              <div className="stat-value">3</div>
+              <div className="stat-value">5</div>
               <div className="stat-label">Leaf Conditions</div>
-              <div className="stat-sub">Healthy · Early · Late Blight</div>
+              <div className="stat-sub">Healthy · Blight · Powdery · Rust</div>
             </div>
             <div className="stat-divider" />
             <div className="stat-item">
@@ -189,7 +206,7 @@ export default function App() {
                 <div className="upload-icon-wrap">🍃</div>
                 <div className="upload-title">Drop your leaf image here</div>
                 <p className="upload-sub">
-                  Drag &amp; drop a clear photo of your potato plant leaf,<br />
+                  Drag &amp; drop a clear photo of your potato or apple leaf,<br />
                   or click below to browse your files.
                 </p>
                 <button className="upload-btn" onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}>
@@ -240,7 +257,7 @@ export default function App() {
                 <div className="result-body">
                   <div className="result-label-row">
                     <div className={`result-class-name ${diseaseInfo?.color}`}>
-                      {diseaseInfo?.emoji} {data.class}
+                      {diseaseInfo?.emoji} {diseaseInfo?.displayName || data.class}
                     </div>
                     <div className="result-confidence-chip">
                       <span className={`confidence-dot ${confLevel === "high" ? "" : confLevel}`} />
@@ -290,7 +307,7 @@ export default function App() {
 
         <div className="steps-grid">
           {[
-            { n: "01", icon: "📸", title: "Upload a Photo", desc: "Take or upload a clear photo of a potato plant leaf. We support JPG, PNG, and WEBP formats." },
+            { n: "01", icon: "📸", title: "Upload a Photo", desc: "Take or upload a clear photo of a plant leaf. We support JPG, PNG, and WEBP formats." },
             { n: "02", icon: "🧠", title: "AI Analysis", desc: "Our TensorFlow CNN model analyzes visual patterns, textures, and color distributions to identify disease markers." },
             { n: "03", icon: "📊", title: "Get Results", desc: "Receive an instant diagnosis with a confidence score and actionable treatment recommendations." },
           ].map(s => (
@@ -311,15 +328,17 @@ export default function App() {
           <div className="section-tag">Disease Classes</div>
           <h2 className="section-title">What We Detect</h2>
           <p className="section-sub">
-            Our model classifies potato plant leaves into three categories based on visual symptoms.
+            Our model classifies plant leaves into five categories based on visual symptoms.
           </p>
         </div>
 
         <div className="diseases-grid">
           {[
             { cls: "healthy-card", emoji: "🌿", name: "Healthy", nc: "green", desc: "Vibrant green leaves with no spots, lesions, or discoloration. The plant is thriving and disease-free." },
-            { cls: "early-card", emoji: "🍂", name: "Early Blight", nc: "orange", desc: "Dark brown spots with concentric rings and yellow halos on lower leaves, caused by Alternaria solani fungus." },
-            { cls: "late-card", emoji: "🍁", name: "Late Blight", nc: "red", desc: "Water-soaked grayish-green lesions caused by Phytophthora infestans. Can devastate entire crops rapidly." },
+            { cls: "early-card", emoji: "🍂", name: "Potato Early Blight", nc: "orange", desc: "Dark brown spots with concentric rings and yellow halos on lower leaves, caused by Alternaria solani fungus." },
+            { cls: "late-card", emoji: "🍁", name: "Potato Late Blight", nc: "red", desc: "Water-soaked grayish-green lesions caused by Phytophthora infestans. Can devastate entire crops rapidly." },
+            { cls: "powdery-card", emoji: "🌫️", name: "Powdery Mildew", nc: "orange", desc: "White, powdery fungal spots on leaves. Requires good air circulation and sulfur-based treatments." },
+            { cls: "rust-card", emoji: "🍄", name: "Rust", nc: "red", desc: "Orange or reddish-brown pustules on leaves. Spreads easily and requires immediate fungicide application." },
           ].map(d => (
             <div className={`disease-card ${d.cls}`} key={d.name}>
               <div className="disease-emoji">{d.emoji}</div>
@@ -363,7 +382,7 @@ export default function App() {
         <div className="cta-card">
           <h2 className="cta-title">Ready to analyze your crop?</h2>
           <p className="cta-sub">
-            Upload a photo of your potato plant leaf and get an instant AI-powered health report.
+            Upload a photo of your plant leaf and get an instant AI-powered health report.
           </p>
           <button className="cta-btn" onClick={scrollToUpload}>
             🚀 Start Analyzing
@@ -374,7 +393,7 @@ export default function App() {
       {/* ─── FOOTER ─── */}
       <footer className="footer">
         <div className="footer-copy">
-          © {new Date().getFullYear()} <span>PotatoAI</span> · AI-Powered Crop Health
+          © {new Date().getFullYear()} <span>UniversalPlantAI</span> · AI-Powered Crop Health
         </div>
         <div className="footer-powered">
           Built with

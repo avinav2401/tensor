@@ -29,17 +29,29 @@ const imagePickerOptions = {
 
 // Disease info dictionary
 const diseaseDetails = {
-  'Early Blight': {
+  'Potato_Early_Blight': {
     cause: 'Alternaria solani (Fungus)',
     symptoms: 'Dark spots with concentric rings ("target board" look) on older leaves first.',
     treatment: 'Apply copper-based fungicides. Remove infected lower leaves, rotate crops, and avoid overhead watering.',
     severity: 'moderate',
   },
-  'Late Blight': {
+  'Potato_Late_Blight': {
     cause: 'Phytophthora infestans (Oomycete)',
     symptoms: 'Large, dark, water-soaked spots on leaves. White mold appears under leaves in humid weather.',
     treatment: 'Apply fungicide immediately. Destroy heavily infected plants. Ensure dry spacing and plant resistant varieties.',
     severity: 'critical',
+  },
+  'Powdery': {
+    cause: 'Powdery Mildew Fungi',
+    symptoms: 'White, powdery spots or patches on the upper surfaces of leaves.',
+    treatment: 'Improve air circulation, avoid overhead watering, and apply sulfur or potassium bicarbonate fungicides.',
+    severity: 'moderate',
+  },
+  'Rust': {
+    cause: 'Pucciniales Fungi',
+    symptoms: 'Orange, yellow, or brown pustules mainly on the undersides of leaves.',
+    treatment: 'Remove infected leaves, apply preventative fungicides, and avoid wetting foliage during irrigation.',
+    severity: 'moderate',
   },
   'Healthy': {
     cause: 'N/A',
@@ -60,7 +72,7 @@ const App = () => {
     const bodyFormData = new FormData();
     bodyFormData.append('file', params);
 
-    const url = Config.URL || 'http://192.168.0.105:8000/predict';
+    const url = Config.URL || 'https://potato-backend-qu9b.onrender.com/predict';
 
     const response = await axios.post(url, bodyFormData, {
       headers: {
@@ -190,7 +202,7 @@ const App = () => {
         <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.brandTitle}>🥔 PotatoAI</Text>
+            <Text style={styles.brandTitle}>🌿 UniversalPlantAI</Text>
             <Text style={styles.brandSubtitle}>Deep Learning Disease Recognition</Text>
           </View>
 
@@ -206,7 +218,7 @@ const App = () => {
             ) : (
               <View style={styles.uploadPlaceholder}>
                 <Text style={styles.placeholderIcon}>🌿</Text>
-                <Text style={styles.placeholderText}>Upload or capture a potato plant leaf image</Text>
+                <Text style={styles.placeholderText}>Upload or capture a plant leaf image</Text>
                 <Text style={styles.placeholderSubText}>Supports JPEG/PNG</Text>
               </View>
             )}
