@@ -246,7 +246,7 @@ Due to Apple security restrictions, iOS apps must be compiled locally using Xcod
 - **Architecture**: Convolutional Neural Network (CNN)
 - **Framework**: TensorFlow / Keras
 - **Input**: 256×256 RGB images
-- **Output**: 3-class softmax (Healthy, Early Blight, Late Blight)
+- **Output**: 5-class softmax (Healthy, Early Blight, Late Blight, Powdery Mildew, Rust)
 - **Training Data**: PlantVillage dataset
 
 ---
