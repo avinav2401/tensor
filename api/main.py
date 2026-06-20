@@ -19,8 +19,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class SafeBatchNormalization(tf.keras.layers.BatchNormalization):
+    def __init__(self, **kwargs):
+        kwargs.pop('renorm', None)
+        kwargs.pop('renorm_clipping', None)
+        kwargs.pop('renorm_momentum', None)
+        super().__init__(**kwargs)
+
 MODEL_PATH = Path(__file__).parent.parent / "saved_models" / "universal_model.keras"
-MODEL = tf.keras.models.load_model(str(MODEL_PATH), compile=False)
+MODEL = tf.keras.models.load_model(
+    str(MODEL_PATH), 
+    compile=False, 
+    custom_objects={'BatchNormalization': SafeBatchNormalization}
+)
 
 CLASS_NAMES = ["Healthy", "Potato_Early_Blight", "Potato_Late_Blight", "Powdery", "Rust"]
 
