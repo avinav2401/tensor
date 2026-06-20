@@ -6,8 +6,6 @@ import uvicorn
 import numpy as np
 from io import BytesIO
 from PIL import Image
-import os
-os.environ['TF_USE_LEGACY_KERAS'] = '1'
 import tensorflow as tf
 from pathlib import Path
 
@@ -21,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL_PATH = Path(__file__).parent.parent / "saved_models" / "universal_model.h5"
+MODEL_PATH = Path(__file__).parent.parent / "saved_models" / "universal_model.keras"
 MODEL = tf.keras.models.load_model(str(MODEL_PATH), compile=False)
 
 CLASS_NAMES = ["Healthy", "Potato_Early_Blight", "Potato_Late_Blight", "Powdery", "Rust"]

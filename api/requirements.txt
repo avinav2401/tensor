@@ -1,5 +1,4 @@
 tensorflow
-tf_keras
 fastapi
 uvicorn
 python-multipart
