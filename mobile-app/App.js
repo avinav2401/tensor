@@ -203,7 +203,7 @@ const App = () => {
           {/* Header */}
           <View style={styles.header}>
             <Text style={styles.brandTitle}>🌿 UniversalPlantAI</Text>
-            <Text style={styles.brandSubtitle}>Deep Learning Disease Recognition</Text>
+            <Text style={styles.brandSubtitle}>Detect Potato & Apple Diseases</Text>
           </View>
 
           {/* Image Card Container */}
@@ -218,7 +218,7 @@ const App = () => {
             ) : (
               <View style={styles.uploadPlaceholder}>
                 <Text style={styles.placeholderIcon}>🌿</Text>
-                <Text style={styles.placeholderText}>Upload or capture a plant leaf image</Text>
+                <Text style={styles.placeholderText}>Upload or capture a potato or apple leaf image</Text>
                 <Text style={styles.placeholderSubText}>Supports JPEG/PNG</Text>
               </View>
             )}
